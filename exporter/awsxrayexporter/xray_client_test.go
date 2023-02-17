@@ -45,4 +45,10 @@ func TestUserAgent(t *testing.T) {
 
 	x.Handlers.Build.Run(req)
 	assert.Contains(t, req.HTTPRequest.UserAgent(), "test-collector-contrib/1.0")
+	assert.Contains(t, req.HTTPRequest.UserAgent(), "xray-otel-exporter/")
+	assert.Contains(t, req.HTTPRequest.UserAgent(), "xray-otel-exporter/0.70.0")
+
+	assert.Contains(t, req.HTTPRequest.UserAgent(), "exec-env/UNKNOWN")
+	assert.Contains(t, req.HTTPRequest.UserAgent(), "OS/")
+
 }
