@@ -16,6 +16,7 @@
 package awsxrayexporter // import "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsxrayexporter"
 
 import (
+	"fmt"
 	"os"
 	"runtime"
 	"runtime/debug"
@@ -75,6 +76,7 @@ func newXRay(logger *zap.Logger, awsConfig *aws.Config, buildInfo component.Buil
 	}
 
 	osInformation := runtime.GOOS + "-" + runtime.GOARCH
+	fmt.Println(getModVersion())
 
 	x.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "tracing.XRayVersionUserAgentHandler",

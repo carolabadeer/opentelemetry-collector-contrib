@@ -15,6 +15,7 @@
 package awsxrayexporter
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -44,6 +45,7 @@ func TestUserAgent(t *testing.T) {
 	}, nil, nil)
 
 	x.Handlers.Build.Run(req)
+	fmt.Println(req.HTTPRequest.UserAgent())
 	assert.Contains(t, req.HTTPRequest.UserAgent(), "test-collector-contrib/1.0")
 	assert.Contains(t, req.HTTPRequest.UserAgent(), "xray-otel-exporter/")
 	assert.Contains(t, req.HTTPRequest.UserAgent(), "xray-otel-exporter/0.70.0")
